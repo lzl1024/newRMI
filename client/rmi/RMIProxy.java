@@ -31,8 +31,7 @@ public class RMIProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args)
             throws Throwable {
-        System.out.printf("Someone called method %s with arguments\n",
-                method.getName());
+    	System.out.printf("Called %s\n", method.getName());
         
         //build method
         RemoteMethod rMethod = new RemoteMethod(method.getName(), args, ror);

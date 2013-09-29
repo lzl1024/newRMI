@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.lang.Integer;
 
 import message.RMILookup;
+import rmi.Rmic;
 import registry.RemoteObjectRef;
 import util.Constants;
 
@@ -21,12 +22,12 @@ public class Client {
 
 			System.out.println("Start testing");
 			//test1 basic type
-			System.out.println("test1: basic test");
+			System.out.println("test1: Basic test");
 			System.out.println(invokeMethod("localhost " + port +" PrintMsg1 " +
 					"PrintGreeting", "Hello world!"));
 			
 			//test2 two instances with same type
-			System.out.println("test2: same instances test");
+			System.out.println("\ntest2: Two instances with same type");
 			System.out.println(invokeMethod("localhost " + port +" PrintFields1 " +
 					"PrintGreeting"));
 
@@ -35,16 +36,16 @@ public class Client {
 
 
 			//test3 no remote interface, real object
-			System.out.println("test3: Real object test");
-			System.out.println(invokeMethod("localhost " + port +" GettheRealMe1 " +
-					"proveMe"));
+			System.out.println("\ntest3: pass-by-value-test");
+			invokeMethod("localhost " + port +" GettheRealMe1 " + "proveMe");
 
 			//test4 Exception test
-	       /* System.out.println("test4: Exception test");
-	        System.out.println(invokeMethod("localhost " + port +" PrintException1 " +
-					"PrintGreeting"));*/
+			System.out.println("\ntest4: Exception caught test");
+	        invokeMethod("localhost " + port +" PrintException1 " + "PrintGreeting");
+	        System.out.println();
 	        
 	        //TODO: 1. connection caching
+	        //TODO: 2. look up fail test
 			
 		} catch (Exception e){
 			System.out.println("Usage: <serverPort>");
@@ -62,7 +63,7 @@ public class Client {
 			return null;
 		}
 		
-		Object object = ror.localise(null);
+		Object object = Rmic.localise(ror);
 	    try {
 			Method method = object.getClass().getMethod(classResource[3], 
             		getParamTypes(args));          

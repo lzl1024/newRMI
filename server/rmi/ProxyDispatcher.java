@@ -97,6 +97,13 @@ public class ProxyDispatcher implements Runnable{
         
     }
 
+    /**
+     * reply the real object to client: pass-by-value
+     * @param msgIn
+     * @param sock
+     * @return
+     * @throws IOException
+     */
     private RMIMessage replyRevalue(RMIMessage msgIn, Socket sock) throws IOException {
         RemoteMethod remoteMethod = (RemoteMethod) msgIn.getContent();
         String url = remoteMethod.getROR().getObjectKey();
@@ -106,17 +113,21 @@ public class ProxyDispatcher implements Runnable{
         return msgOut;
     }
 
+    /**
+     * look up an object in registry
+     * @param msgIn
+     * @return
+     */
     private RMIMessage replyLookup(RMIMessage msgIn) {
         RemoteEntry lookupPair = (RemoteEntry) msgIn.getContent();
         RegistryObj ref;
-        for(String e : this.registryModule.getMap().keySet())
-        	System.out.println(e);
-        System.out.println(lookupPair.getUrl());
+        
+        System.out.println("\nClient looking for:"+lookupPair.getUrl());
         if ((ref = registryModule.findRef(lookupPair.getUrl())) != null ) {
-        	System.out.println("find the ref");
+        	System.out.println("Find it!");
         	lookupPair.setRef(ref.getRef());
         } else {
-        	System.out.println("cannot find ref!");
+        	System.out.println("Cannot find ref!");
             msgIn = new RMIMessage(MSG_TYPE.REMOTE_EXCEPTION, null);
         } 
 
@@ -139,15 +150,17 @@ public class ProxyDispatcher implements Runnable{
         Object[] args = remoteMethod.getArgs();
 
         try {
-        	System.out.println("Debug:" + reference.getClass().getName() + " " + remoteMethod.getName());
+        	System.out.println("Client wants to invoke a method: " +
+        			reference.getClass().getName() + "." + remoteMethod.getName());
             Method method = reference.getClass().getMethod(remoteMethod.getName(), 
             		getParamTypes(args));          
             //invoke method
             System.out.println("Method is " + method.getName());
             remoteMethod.setReturnValue(method.invoke(reference, args));
+            System.out.println("Successfully set the return value!");
 
         } catch (Exception e) {
-        	System.out.println("Get remote Exception!");
+        	System.out.println("Get remote Exception from the method!");
             remoteMethod.setException(new RemoteException(e));
         }
             
