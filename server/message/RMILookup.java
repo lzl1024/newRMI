@@ -33,7 +33,7 @@ public class RMILookup {
         
         //exception handler
         if(response.getType() != MSG_TYPE.LOOK_UP)
-        	System.out.println("response is null" + response.getType());
+        	System.out.println("response is :" + response.getType());
         
         if(response == null || response.getType() != MSG_TYPE.LOOK_UP)
         	return null;
