@@ -45,7 +45,21 @@ public class RemoteObjectRef implements Serializable {
      * @throws ClassNotFoundException 
      */
     public Object localise(Object[] args) throws IOException, ClassNotFoundException {
-    	if(this.remoteInterfaceName == null) {
+    	if(this.remoteInterfaceName.startsWith("fake:")) {
+    		String className = remoteInterfaceName.substring(
+    				remoteInterfaceName.indexOf(":"));
+    		//see whether we have .class file
+            //String className = response.getValueClassName();
+            try{
+            	Class.forName(className);
+            } catch (ClassNotFoundException e) {
+    			String interfaceName = className.substring(
+    					className.indexOf(".")+1);
+    			String url = Constants.S3_URL + interfaceName + ".class";
+    			String filename = Constants.CLASS_PREFIX + interfaceName + ".class";
+    			httpDownload(url, filename);
+    		}
+    		
     		//build method
     		RemoteMethod rMethod = new RemoteMethod(null, args, this);
     		//build RMIMessage
@@ -56,7 +70,7 @@ public class RemoteObjectRef implements Serializable {
             RMIMessage response = RMIMessage.receive(sock, this.IPaddr, port);
             if(!sock.isClosed())
             	sock.close();
- 
+            
             //Real object are stored in the content
             return response.getContent();
 

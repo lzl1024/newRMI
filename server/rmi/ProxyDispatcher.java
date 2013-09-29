@@ -101,8 +101,9 @@ public class ProxyDispatcher implements Runnable{
         RemoteMethod remoteMethod = (RemoteMethod) msgIn.getContent();
         String url = remoteMethod.getROR().getObjectKey();
         Serializable reference = (Serializable) this.registryModule.findRef(url).getObj();
-   
-        return new RMIMessage(MSG_TYPE.GET_REALVALUE, reference);
+        RMIMessage msgOut = new RMIMessage(MSG_TYPE.GET_REALVALUE, reference);
+
+        return msgOut;
     }
 
     private RMIMessage replyLookup(RMIMessage msgIn) {

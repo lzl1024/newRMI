@@ -33,7 +33,6 @@ public class RMIMessage implements Serializable {
         return content;
     }
 
-
     /**
      * send itself to remote place 
      * @param reusedSocket
@@ -49,11 +48,8 @@ public class RMIMessage implements Serializable {
             if (sock == null) {
                 sock = new Socket(Ipaddr, port);
             }
-            System.out.println("before write object");
             ObjectOutputStream out = new ObjectOutputStream(sock.getOutputStream());
-            System.out.println("just before");
             out.writeObject(this);
-            System.out.println("After write Object");
             out.flush();
 
         } catch(Exception e) {
@@ -93,6 +89,7 @@ public class RMIMessage implements Serializable {
             msg = (RMIMessage) in.readObject();
             
         } catch (Exception e) {
+        	e.printStackTrace();
             if (msg == null) {
                 msg = new RMIMessage(MSG_TYPE.REMOTE_EXCEPTION, new RemoteMethod());
             }

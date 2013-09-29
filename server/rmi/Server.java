@@ -70,8 +70,13 @@ public class Server {
 
                     	newInstance = objConstructor.newInstance(new Object[] {args});
                     }
+                    String interfaceName = getInterfaceName(obj.getInterfaces());
+                    if (interfaceName == null) {
+                    	interfaceName = "fake:"+Constants.CLASS_PREFIX+
+                        		classResource[0].toString();
+                    }
                     RemoteObjectRef ref = new RemoteObjectRef(null, port, url, 
-                    		getInterfaceName(obj.getInterfaces()));
+                    		interfaceName);
                     //add instance reference into registry 
                     RegistryObj newObj = registryModule.new RegistryObj(ref, newInstance);
                     registryModule.addItem(url, newObj);
@@ -113,7 +118,7 @@ public class Server {
  
     	//for test3
     	GettheRealMe realMe = new GettheRealMe();
-    	ref = new RemoteObjectRef(null, port, "GettheRealMe1", null);
+    	ref = new RemoteObjectRef(null, port, "GettheRealMe1", "fake:interfaces.GettheRealMe");
     	newObj = registryModule.new RegistryObj(ref, realMe);
     	registryModule.addItem("GettheRealMe1", newObj);
 
