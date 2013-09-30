@@ -29,8 +29,8 @@ public class Rmic {
     	//create a stub to pass-by-value    	
     	if(remoteInterfaceName.startsWith("fake:")) {
     		String className = remoteInterfaceName.substring(
-    				remoteInterfaceName.indexOf(":"));
-    		
+    				remoteInterfaceName.indexOf(":")+1);
+    		System.out.println(className);
     		//see whether we have .class file
             try{
             	Class.forName(className);
@@ -89,6 +89,7 @@ public class Rmic {
     public static void httpDownload(String urlAddr,String filename){
 
         try {
+        	System.out.printf("Download %s to %s", urlAddr, filename);
             URLConnection conn = new URL(urlAddr).openConnection();
             InputStream in = conn.getInputStream();
             FileOutputStream fs = new FileOutputStream(filename);
