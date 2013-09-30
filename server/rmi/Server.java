@@ -95,7 +95,6 @@ public class Server {
      * @param port 
      */
     private static void fillRegistry(Registry registryModule, int port) {
-		try {
     	//for test1
     	PrintMsgImpl instance1 = new PrintMsgImpl();
     	RemoteObjectRef ref = new RemoteObjectRef(null, port, "PrintMsg1", 
@@ -130,9 +129,7 @@ public class Server {
                 "interfaces.PrintFields");
         newObj = registryModule.new RegistryObj(ref, instance4);
         registryModule.addItem("PrintException1", newObj);
-		} catch(UnknownHostException e) {
-			e.printStackTrace();
-		}
+
 	}
 
 	/**
