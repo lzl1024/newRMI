@@ -25,29 +25,29 @@ public class Client {
 			System.out.println("Start testing");
 			//test1 basic type
 			System.out.println("test1: Basic test");
-			System.out.println(invokeMethod("localhost " + port +" PrintMsg1 " +
+			System.out.println(invokeMethod(args[1] + " " + port +" PrintMsg1 " +
 					"PrintGreeting", "Hello world!"));
 			
 			//test2 two instances with same type
 			System.out.println("\ntest2: Two instances with same type");
-			System.out.println(invokeMethod("localhost " + port +" PrintFields1 " +
+			System.out.println(invokeMethod(args[1] + " " + port +" PrintFields1 " +
 					"PrintGreeting"));
 
-			System.out.println(invokeMethod("localhost " + port +" PrintFields2 " +
+			System.out.println(invokeMethod(args[1] + " " + port +" PrintFields2 " +
 					"PrintGreeting"));
 
 
 			//test3 no remote interface, real object
 			System.out.println("\ntest3: pass-by-value-test");
-			invokeMethod("localhost " + port +" GettheRealMe1 " + "proveMe");
+			invokeMethod(args[1] + " " + port +" GettheRealMe1 " + "proveMe");
 
 			//test4 Exception test
 			System.out.println("\ntest4: Exception caught test");
-	        invokeMethod("localhost " + port +" PrintException1 " + "PrintGreeting");
+	        invokeMethod(args[1] + " " + port +" PrintException1 " + "PrintGreeting");
 	        System.out.println();
 	        
 	        System.out.println("\ntest5: Look up fail test");
-	        invokeMethod("localhost " + port +" PrintException3 " + "PrintGreeting");
+	        invokeMethod(args[1] + " " + port +" PrintException3 " + "PrintGreeting");
 	        
 	        printUseage();
 	        String cmdInput = "";
