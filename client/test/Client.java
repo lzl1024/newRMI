@@ -1,6 +1,8 @@
 package test;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.UnknownHostException;
 import java.lang.reflect.Method;
 import java.lang.Integer;
@@ -46,8 +48,34 @@ public class Client {
 	        
 	        System.out.println("\ntest5: Look up fail test");
 	        invokeMethod("localhost " + port +" PrintException3 " + "PrintGreeting");
+	        
+	        printUseage();
+	        String cmdInput = "";
+	        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	        while (!cmdInput.equals("quit")) {
+	        	System.out.print("cmd% ");
+	        	try {
+	                cmdInput = in.readLine();
+	            } catch (IOException e) {
+	                // TODO Auto-generated catch block
+	                e.printStackTrace();
+	            }
+	        	
+	        	try {
+	        		if (!cmdInput.equals("quit") && cmdInput.split("\\s+").length == 4) {
+	        			System.out.println("Please input args, split by space:");
+	        			String[] arg = in.readLine().toString().split("\\s+");
+
+	        			System.out.println(invokeMethod(cmdInput, (Object[])arg));
+	        		} else {
+	        			System.out.println("Input Invalid!");
+	        		}
+	        	} catch (Exception e) {
+	        		System.out.println("Input Invalid!");
+	        	}
+	        }
+
 	        //TODO: 1. connection caching
-	        //TODO: 2. look up fail test
 			
 		} catch (Exception e){
 			System.out.println("Usage: <serverPort>");
@@ -96,4 +124,10 @@ public class Client {
         return types;
     }
 
+    private static void printUseage() {
+        System.out.println("\nYou can add your own test now...");
+        System.out.println("Useage:");
+        System.out.println("quit : client quit");
+        System.out.println("<ServerIp> <ServerPort> <url> <MethodName> : remote call");
+    }
 }
