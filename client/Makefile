@@ -7,4 +7,6 @@ client: all
 	java -cp .:lib/rim-lib.jar test.Client ${PORT} ${Server}
 
 clean:
-	find . -name *.class | xargs rm -rf
+	find . -name *.class | xargs rm -rf >> a.out
+	find -name *.class | xargs rm -rf >> a.out
+	rm a.out
