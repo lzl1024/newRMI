@@ -7,7 +7,7 @@ server: all
 	java rmi.Server ${PORT}
 	
 jar: all
-	jar cvf rim-lib.jar ./registry/*.class ./message/*.class
+	jar cvf rim-lib.jar ./registry/*.class ./message/*.class ./interfaces/Remote.class
 	
 clean:
 	find  -name *.class | xargs rm -rf
