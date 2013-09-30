@@ -39,4 +39,8 @@ public class RemoteObjectRef implements Serializable {
     public String getInterfacename() {
     	return this.remoteInterfaceName;
     }
+    
+    public void setIpaddr(String Ipaddr){
+    	this.IPaddr = Ipaddr;
+    }
 }

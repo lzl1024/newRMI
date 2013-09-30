@@ -38,7 +38,8 @@ public class RMILookup {
         if(response == null || response.getType() != MSG_TYPE.LOOK_UP)
         	return null;
         RemoteEntry remoteName = (RemoteEntry)response.getContent();
-        //return the ror
+        //return the ror and change its Ip
+        remoteName.getRef().setIpaddr(remoteIp);
         return remoteName.getRef();
 	}
 
