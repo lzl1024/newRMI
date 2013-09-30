@@ -10,5 +10,8 @@ jar: all
 	jar cvf rim-lib.jar ./registry/*.class ./message/*.class ./interfaces/Remote.class
 	
 clean:
-	find  -name *.class | xargs rm -rf
-	find  -name *.jar | xargs rm -rf
+	find  -name *.class | xargs rm -rf >> a.out
+	find  -name *.jar | xargs rm -rf >> a.out
+	find . -name *.class | xargs rm -rf >> a.out
+	find . -name *.jar | xargs rm -rf >> a.out
+	rm a.out
