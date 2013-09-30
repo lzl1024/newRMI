@@ -6,8 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+
 
 import registry.Registry;
 import registry.Registry.RegistryObj;
@@ -77,7 +76,7 @@ public class Server {
                     	interfaceName = "fake:"+Constants.CLASS_PREFIX+
                         		classResource[0].toString();
                     }
-                    RemoteObjectRef ref = new RemoteObjectRef(InetAddress.getLocalHost().getHostAddress().toString(), port, url, 
+                    RemoteObjectRef ref = new RemoteObjectRef(null, port, url, 
                     		interfaceName);
                     //add instance reference into registry 
                     RegistryObj newObj = registryModule.new RegistryObj(ref, newInstance);
@@ -99,7 +98,7 @@ public class Server {
 		try {
     	//for test1
     	PrintMsgImpl instance1 = new PrintMsgImpl();
-    	RemoteObjectRef ref = new RemoteObjectRef(InetAddress.getLocalHost().getHostAddress().toString(), port, "PrintMsg1", 
+    	RemoteObjectRef ref = new RemoteObjectRef(null, port, "PrintMsg1", 
          		"interfaces.PrintMsg");
     	RegistryObj newObj = registryModule.new RegistryObj(ref, instance1);
     	registryModule.addItem("PrintMsg1", newObj);
@@ -107,27 +106,27 @@ public class Server {
     	//for test2
     	PrintFieldsImpl instance2 = new PrintFieldsImpl(new String[]
     			{"I", "Like", "This"});
-    	ref = new RemoteObjectRef(InetAddress.getLocalHost().getHostAddress().toString(), port, "PrintFields1", 
+    	ref = new RemoteObjectRef(null, port, "PrintFields1", 
          		"interfaces.PrintFields");
     	newObj = registryModule.new RegistryObj(ref, instance2);
     	registryModule.addItem("PrintFields1", newObj);
 
     	PrintFieldsImpl instance3 = new PrintFieldsImpl(new String[]
     			{"I", "Don't", "Like", "This"});
-    	ref = new RemoteObjectRef(InetAddress.getLocalHost().getHostAddress().toString(), port, "PrintFields2", 
+    	ref = new RemoteObjectRef(null, port, "PrintFields2", 
          		"interfaces.PrintFields");
     	newObj = registryModule.new RegistryObj(ref, instance3);
     	registryModule.addItem("PrintFields2", newObj);
  
     	//for test3
     	GettheRealMe realMe = new GettheRealMe();
-    	ref = new RemoteObjectRef(InetAddress.getLocalHost().getHostAddress().toString(), port, "GettheRealMe1", "fake:interfaces.GettheRealMe");
+    	ref = new RemoteObjectRef(null, port, "GettheRealMe1", "fake:interfaces.GettheRealMe");
     	newObj = registryModule.new RegistryObj(ref, realMe);
     	registryModule.addItem("GettheRealMe1", newObj);
 
     	//for test4
     	PrintExceptionImpl instance4 = new PrintExceptionImpl(new String[0]);
-        ref = new RemoteObjectRef(InetAddress.getLocalHost().getHostAddress().toString(), port, "PrintException1", 
+        ref = new RemoteObjectRef(null, port, "PrintException1", 
                 "interfaces.PrintFields");
         newObj = registryModule.new RegistryObj(ref, instance4);
         registryModule.addItem("PrintException1", newObj);
