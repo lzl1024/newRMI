@@ -1,8 +1,10 @@
+PORT = 8090
+
 all:	
-	javac interfaces/*.java message/*.java registry/*.java rmi/*.java test/*.java util/*.java
+	javac -cp .:lib/rim-lib.jar interfaces/*.java rmi/*.java test/*.java util/*.java
 	
 client: all
-	java test.Client 8090
+	java -cp .:lib/rim-lib.jar test.Client ${PORT}
 
 clean:
 	find  -name *.class | xargs rm -rf

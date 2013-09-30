@@ -44,6 +44,8 @@ public class Client {
 	        invokeMethod("localhost " + port +" PrintException1 " + "PrintGreeting");
 	        System.out.println();
 	        
+	        System.out.println("\ntest5: Look up fail test");
+	        invokeMethod("localhost " + port +" PrintException3 " + "PrintGreeting");
 	        //TODO: 1. connection caching
 	        //TODO: 2. look up fail test
 			
