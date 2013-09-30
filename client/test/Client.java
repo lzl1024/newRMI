@@ -62,13 +62,15 @@ public class Client {
 	            }
 	        	
 	        	try {
-	        		if (!cmdInput.equals("quit") && cmdInput.split("\\s+").length == 4) {
-	        			System.out.println("Please input args, split by space:");
-	        			String[] arg = in.readLine().toString().split("\\s+");
+	        		if (!cmdInput.equals("quit")) {
+	        			if (cmdInput.split("\\s+").length == 4) {
+	        				System.out.println("Please input args, split by space:");
+	        				String[] arg = in.readLine().toString().split("\\s+");
 
-	        			System.out.println(invokeMethod(cmdInput, (Object[])arg));
-	        		} else {
-	        			System.out.println("Input Invalid!");
+	        				System.out.println(invokeMethod(cmdInput, (Object[])arg));
+	        			} else {
+	        				System.out.println("Input Invalid!");
+	        			}
 	        		}
 	        	} catch (Exception e) {
 	        		System.out.println("Input Invalid!");
