@@ -87,7 +87,6 @@ public class Client {
 		String[] classResource = cmdInput.split("\\s+");
 		RemoteObjectRef ror = RMILookup.lookup(classResource[0], 
 		Integer.parseInt(classResource[1]), classResource[2]);
-		
 		if (ror == null) {
 			System.out.println("Sorry, the resource has not been registered.");
 			return null;

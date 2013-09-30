@@ -37,6 +37,7 @@ public class RMIProxy implements InvocationHandler {
         RemoteMethod rMethod = new RemoteMethod(method.getName(), args, ror);
         //send request
         RMIMessage request = new RMIMessage(MSG_TYPE.METHOD_INVOCATION, rMethod);
+        System.out.println("addr is" + this.Ipaddr + "port is " + this.port);
         Socket sock = request.send(null, Ipaddr, port);
         //get response
         RMIMessage response = RMIMessage.receive(sock, Ipaddr, port);
