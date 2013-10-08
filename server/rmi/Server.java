@@ -73,8 +73,14 @@ public class Server {
                     }
                     String interfaceName = getInterfaceName(obj.getInterfaces());
                     if (interfaceName == null) {
-                    	interfaceName = "fake:"+Constants.CLASS_PREFIX+
+                		if(newInstance instanceof Serializable) {
+                			interfaceName = "fake:"+Constants.CLASS_PREFIX+
                         		classResource[0].toString();
+                		}
+                		else {
+                			System.out.println("This item is not even Serializable.");
+                			continue;
+                		}
                     }
                     RemoteObjectRef ref = new RemoteObjectRef(null, port, url, 
                     		interfaceName);

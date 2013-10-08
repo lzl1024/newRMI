@@ -25,12 +25,7 @@ public class Registry {
     
     public void addItem(String newUrl, RegistryObj ref) {
     	if(!this.RORMap.containsKey(newUrl)) {
-    		if(ref.getObj() instanceof Serializable) {
-    			this.RORMap.put(newUrl, ref);
-    		}
-    		else {
-    			System.out.println("The new item is not a Serializable Object.");
-    		}
+    		this.RORMap.put(newUrl, ref);
     	}
     	else {
     		System.out.println("Receive repetitive item in Registry.");
