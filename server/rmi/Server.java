@@ -73,7 +73,7 @@ public class Server {
                     }
                     String interfaceName = getInterfaceName(obj.getInterfaces());
                     if (interfaceName == null) {
-                		if(newInstance instanceof Serializable) {
+                		if(newInstance instanceof java.io.Serializable) {
                 			interfaceName = "fake:"+Constants.CLASS_PREFIX+
                         		classResource[0].toString();
                 		}
