@@ -8,7 +8,10 @@ import java.io.Serializable;
  * @author zhuolinl, dil1
  * 
  * The remote object reference class
- *
+ * @param ip
+ * @param port
+ * @param obj_key
+ * @param riname
  */
 public class RemoteObjectRef implements Serializable {
     //fields

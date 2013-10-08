@@ -7,7 +7,10 @@ import registry.RemoteObjectRef;
 public class RemoteMethod implements Serializable {
 
     /**
-     * 
+     * This class is used to pass Ror and method name from client to server and return value
+     * and possible exception from server to client
+     * @param args
+     * @param ror
      */
     private static final long serialVersionUID = 1L;
 

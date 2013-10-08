@@ -11,7 +11,11 @@ import message.RMILookup;
 import rmi.Rmic;
 import registry.RemoteObjectRef;
 import util.Constants;
-
+/**
+ * Main function in client side. Add five test cases to proceed testing
+ * Display command line to accept coming RMI request.
+ *
+ */
 public class Client {
 	
 	public static void main(String args[]) throws UnknownHostException, IOException, ClassNotFoundException {

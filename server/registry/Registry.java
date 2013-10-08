@@ -1,9 +1,16 @@
 package registry;
 
 import java.util.HashMap;
-
+/**
+ * This class use a HashMap to keep the mapping of obj_key and RegistryObj
+ * @param RORMap
+ */
 public class Registry {
-
+	/**
+	 * This class is defined as combination of both ror and real value
+	 * @param objRef
+	 * @param realval
+	 */
 	public class RegistryObj {
 		private RemoteObjectRef ref = null;
 		private Object realVal = null;
