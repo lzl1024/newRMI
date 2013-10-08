@@ -1,5 +1,5 @@
 PORT = 8090
-Server = 128.237.229.140
+Server = localhost
 all:	
 	javac -cp .:lib/rim-lib.jar rmi/*.java test/*.java util/*.java
 	
