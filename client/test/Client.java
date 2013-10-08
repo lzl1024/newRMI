@@ -101,7 +101,7 @@ public class Client {
 			System.out.println("Sorry, the resource has not been registered.");
 			return null;
 		}
-		
+
 		Object object = Rmic.localise(ror);
 	    try {
 			Method method = object.getClass().getMethod(classResource[3], 

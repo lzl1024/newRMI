@@ -41,9 +41,9 @@ public class Rmic {
     					className.indexOf(".")+1);
     			String url = Constants.S3_URL + interfaceName + ".class";
     			String filename = Constants.CLASS_REALVALUE_PREFIX + interfaceName + ".class";
-    			httpDownload(url, filename);
+    			httpDownload(url, filename);	
     		}
-    		
+
     		//build method
     		RemoteMethod rMethod = new RemoteMethod(null, null, ror);
     		//build RMIMessage
@@ -89,7 +89,7 @@ public class Rmic {
     public static void httpDownload(String urlAddr,String filename){
 
         try {
-        	System.out.printf("Download %s to %s", urlAddr, filename);
+        	System.out.printf("Download %s to %s\n", urlAddr, filename);
             URLConnection conn = new URL(urlAddr).openConnection();
             InputStream in = conn.getInputStream();
             FileOutputStream fs = new FileOutputStream(filename);
