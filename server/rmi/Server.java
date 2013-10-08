@@ -6,7 +6,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
+import java.net.InetSocketAddress;
 
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
 
 import registry.Registry;
 import registry.Registry.RegistryObj;
@@ -16,15 +19,26 @@ import test.PrintExceptionImpl;
 import test.PrintFieldsImpl;
 import test.PrintMsgImpl;
 import util.Constants;
+import util.HttpDownloadServer;
 
 public class Server {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         Registry registryModule = new Registry();
         int port = parse(args);
         //start dispatcher service
         new Thread(new ProxyDispatcher(port, registryModule)).start();
+        
+        //open httpdownloadserver
+	    InetSocketAddress addr = new InetSocketAddress(Constants.Download_PORT);  
+	    HttpServer server = HttpServer.create(addr, 0);
+	    final HttpHandler handler = new HttpDownloadServer();	    
+        server.createContext("/", handler);
+	    server.start();
+        
         executing(registryModule, port);
+        
+        server.stop(0);
         System.exit(0);
     }
 
@@ -34,6 +48,7 @@ public class Server {
 
         printUseage();
         fillRegistry(registryModule, port);
+
 
         while (!cmdInput.equals("quit")) {
             System.out.print("cmd% ");

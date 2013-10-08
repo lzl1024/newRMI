@@ -39,7 +39,8 @@ public class Rmic {
             	
     			String interfaceName = className.substring(
     					className.indexOf(".")+1);
-    			String url = Constants.S3_URL + interfaceName + ".class";
+    			String url = Constants.HTTP_PREFIX + ror.getIpaddr() + ":" + Constants.Download_PORT 
+    					+ "/"+ Constants.CLASS_REALVALUE_PREFIX + interfaceName + ".class";
     			String filename = Constants.CLASS_REALVALUE_PREFIX + interfaceName + ".class";
     			httpDownload(url, filename);	
     		}
@@ -69,7 +70,9 @@ public class Rmic {
     			
     			String interfaceName = remoteInterfaceName.substring(
     					remoteInterfaceName.indexOf(".")+1);
-    			String url = Constants.S3_URL + interfaceName + ".class";
+    			String url = Constants.HTTP_PREFIX + ror.getIpaddr() + ":" + Constants.Download_PORT 
+    					+ "/"+ Constants.CLASS_PREFIX + interfaceName + ".class";
+
     			String filename = Constants.CLASS_PREFIX + interfaceName + ".class";
     			httpDownload(url, filename);
     			remoteIfClass = Class.forName(remoteInterfaceName);
@@ -82,7 +85,7 @@ public class Rmic {
     }
 
     /**
-     * Download interface class file from Amazon S3
+     * Download interface class file from Server
      * @param urlAddr
      * @param filename
      */
@@ -95,13 +98,13 @@ public class Rmic {
             FileOutputStream fs = new FileOutputStream(filename);
             int byteNum = 0;
             
-            byte[] buffer = new byte[1204];
+            byte[] buffer = new byte[1024];
             while ((byteNum = in.read(buffer)) != -1) {
                 fs.write(buffer, 0, byteNum);
             }
         } catch (Exception e) {
         	e.printStackTrace();
-            System.out.println("Failed to download class file from Amazon S3");
+            System.out.println("Failed to download class file from Server");
         }
     }
 }  

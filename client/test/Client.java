@@ -84,6 +84,7 @@ public class Client {
 	        //TODO: 1. connection caching
 			
 		} catch (Exception e){
+			e.printStackTrace();
 			System.out.println("Usage: <serverPort>");
 		}
 	}
