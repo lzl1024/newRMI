@@ -40,7 +40,7 @@ public class Rmic {
     			String interfaceName = className.substring(
     					className.indexOf(".")+1);
     			String url = Constants.S3_URL + interfaceName + ".class";
-    			String filename = Constants.CLASS_PREFIX + interfaceName + ".class";
+    			String filename = Constants.CLASS_REALVALUE_PREFIX + interfaceName + ".class";
     			httpDownload(url, filename);
     		}
     		

@@ -88,7 +88,11 @@ public class Client {
 		}
 	}
 
-
+    /**
+     * the interface for handling any client request
+     * @param cmdInput, args
+     * @return the return value
+     */
 	private static Object invokeMethod(String cmdInput, Object... args) throws Exception{
 		String[] classResource = cmdInput.split("\\s+");
 		RemoteObjectRef ror = RMILookup.lookup(classResource[0], 

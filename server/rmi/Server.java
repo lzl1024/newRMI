@@ -11,7 +11,7 @@ import java.lang.reflect.Constructor;
 import registry.Registry;
 import registry.Registry.RegistryObj;
 import registry.RemoteObjectRef;
-import interfaces.GettheRealMe;
+import test.GettheRealMe;
 import test.PrintExceptionImpl;
 import test.PrintFieldsImpl;
 import test.PrintMsgImpl;
@@ -74,7 +74,7 @@ public class Server {
                     String interfaceName = getInterfaceName(obj.getInterfaces());
                     if (interfaceName == null) {
                 		if(newInstance instanceof java.io.Serializable) {
-                			interfaceName = "fake:"+Constants.CLASS_PREFIX+
+                			interfaceName = "fake:"+ Constants.CLASS_PREFIX +
                         		classResource[0].toString();
                 		}
                 		else {
@@ -125,7 +125,7 @@ public class Server {
  
     	//for test3
     	GettheRealMe realMe = new GettheRealMe();
-    	ref = new RemoteObjectRef(null, port, "GettheRealMe1", "fake:interfaces.GettheRealMe");
+    	ref = new RemoteObjectRef(null, port, "GettheRealMe1", "fake:test.GettheRealMe");
     	newObj = registryModule.new RegistryObj(ref, realMe);
     	registryModule.addItem("GettheRealMe1", newObj);
 
