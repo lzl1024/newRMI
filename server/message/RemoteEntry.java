@@ -7,6 +7,9 @@ import registry.RemoteObjectRef;
 public class RemoteEntry implements Serializable {
 	
 	/**
+	 * This class is a type of object used in Registry Lookup
+	 * @param url (unique key) 
+	 * @param ref(RoR)
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;

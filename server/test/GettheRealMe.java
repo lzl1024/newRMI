@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class GettheRealMe implements Serializable{
 	/**
-	 * 
+	 * The class that has not extend remote (for test usage)
 	 */
 	private static final long serialVersionUID = 1L;
 

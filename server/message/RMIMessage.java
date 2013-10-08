@@ -7,7 +7,12 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-
+/**
+ * This class is used for the communicatioin unit between client and server
+ * @param MSG_TYPE type
+ * @param Serializable content
+ *
+ */
 public class RMIMessage implements Serializable {
 
     private static final long serialVersionUID = 1L;
