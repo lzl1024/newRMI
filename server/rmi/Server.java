@@ -182,22 +182,21 @@ public class Server {
         boolean robustFlag = false;
         int serverPort = -1;
 
-        if (args.length == 1) {
-            try{
-                if (args[0].equals("-h")) {
-                    System.out.println("cmdLine Helper, Usage: <serverport>"); 
-                    System.exit(0);
-                } else {
-                    //parse port
-                    serverPort = Integer.parseInt(args[0]);
-                    if (serverPort <= 0 || serverPort > Constants.MAX_PORT_NUM) {
-                        System.out.println("Port number error");
-                        throw new Exception();
-                    }
-                    robustFlag = true;
-                }
-    
-            } catch (Exception e) {}
+        if (args.length == 1 && args[0].equals("-h")) {
+                System.out.println("cmdLine Helper, Usage: <serverport> <downloadport>"); 
+                System.exit(0);
+        } else if (args.length == 2) {
+        	try{
+	        	//parse port
+	            serverPort = Integer.parseInt(args[0]);
+	            Constants.Download_PORT = Integer.parseInt(args[1]);
+	            if (serverPort <= 0 || serverPort > Constants.MAX_PORT_NUM ||
+	            	Constants.Download_PORT <=0 || Constants.Download_PORT > Constants.MAX_PORT_NUM	) {
+	                System.out.println("Port number error");
+	                throw new Exception();
+	            }
+	            robustFlag = true;
+        	} catch (Exception e) {}
         }
 
         if (!robustFlag) {

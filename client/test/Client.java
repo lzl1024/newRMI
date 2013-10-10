@@ -21,8 +21,11 @@ public class Client {
 	public static void main(String args[]) throws UnknownHostException, IOException, ClassNotFoundException {
 		try{
 			int port = Integer.parseInt(args[0]);
+			Constants.Download_PORT = Integer.parseInt(args[2]);
 			
-			if (port <=0 || port > Constants.MAX_PORT_NUM) {
+			if (port <=0 || port > Constants.MAX_PORT_NUM ||
+					Constants.Download_PORT <=0 || Constants.Download_PORT > Constants.MAX_PORT_NUM	) {
+				System.out.println("Port number error");
 				throw new Exception();
 			}
 
